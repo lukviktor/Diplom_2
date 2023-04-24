@@ -1,6 +1,7 @@
 package Order;
 
 import io.qameta.allure.junit4.DisplayName;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import jdk.jfr.Description;
 import org.apache.http.HttpStatus;
@@ -21,12 +22,6 @@ import static constant.ConstantUrlApi.BASE_URL;
 import static constant.ConstantUserData.*;
 
 public class ReceivingUserOrdersTest {
-    /*
-    Получение заказов конкретного пользователя:
-авторизованный пользователь,
-неавторизованный пользователь
-     */
-
     private UserStep userStep = new UserStep();
     private OrderStep orderStep = new OrderStep();
     private User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
@@ -37,7 +32,7 @@ public class ReceivingUserOrdersTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = BASE_URL;
-        //RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(new AllureRestAssured());
         userStep.createUser(user);
         accessToken = userStep.accessTokenUser(user);
     }

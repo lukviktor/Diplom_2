@@ -2,6 +2,7 @@ package User;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
@@ -21,7 +22,7 @@ public class CreateUserTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = BASE_URL;
-        //RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(new AllureRestAssured());
     }
 
     @DisplayName("Создание пользователя")
@@ -91,5 +92,4 @@ public class CreateUserTest {
             userStep.deleteDataUser(accessToken);
         }
     }
-
 }

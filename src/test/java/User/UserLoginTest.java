@@ -2,6 +2,7 @@ package User;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
@@ -25,7 +26,7 @@ public class UserLoginTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = BASE_URL;
-        //RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(new AllureRestAssured());
         userStep.createUser(user);
     }
 

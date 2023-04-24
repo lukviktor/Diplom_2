@@ -2,6 +2,7 @@ package User;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
@@ -25,7 +26,7 @@ public class ChangingUserDataTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = BASE_URL;
-        //RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(new AllureRestAssured());
         userStep.createUser(user);
         accessToken = userStep.accessTokenUser(user);
     }
@@ -40,8 +41,7 @@ public class ChangingUserDataTest {
         userStep.changingDataUser(user, accessToken)
                 .then().log().all()
                 .statusCode(HttpStatus.SC_OK)
-                .and()
-                .assertThat().body("success", Matchers.is(true))
+                .and().assertThat().body("success", Matchers.is(true))
                 .and().body("user.email", Matchers.is(updateEmail))
                 .and().body("user.name", Matchers.is(updateName));
     }
@@ -50,17 +50,13 @@ public class ChangingUserDataTest {
     @Description("без авторизации")
     @Test
     public void changingDataUserNotAuthorizationTest() {
-
-        String accessToken = "";
-
         user.setEmail(updateEmail);
         user.setName(updateName);
 
-        userStep.changingDataUser(user, accessToken)
+        userStep.changingDataUser(user, "")
                 .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
+                .and().assertThat().body("success", Matchers.is(false))
                 .and().body("message", Matchers.is("You should be authorised"));
     }
     @After
