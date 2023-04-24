@@ -16,7 +16,7 @@
 
 Для создания отчета в Allure ввести команду:
 
-    mvn allure:report
+    mvn allure:serve
 
     если не сработало
 
