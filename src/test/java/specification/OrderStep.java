@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import stellarburgers.IngredientData;
 import stellarburgers.Order;
 
+import static constant.ConstantUrlApi.ENDPOINT_ORDER;
 import static io.restassured.RestAssured.given;
 
 public class OrderStep {
@@ -14,20 +15,18 @@ public class OrderStep {
         return given()
                 .header("Content-Type", "application/json")
                 .log().all()
-                .get("/api/ingredients")
+                .get("api/ingredients")
                 .body()
                 .as(IngredientData.class);
     }
 
-    @Step("Создание заказа с авторизацией. POST запрос на ручку /api/orders.")
+    @Step("Создание заказа")
     public Response createOrder(Order order, String accessToken) {
         return given().log().all()
                 .header("Content-Type", "application/json")
                 .header("authorization", accessToken)
                 .body(order)
                 .when()
-                .post("/api/orders");
+                .post(ENDPOINT_ORDER);
     }
-
-
 }
