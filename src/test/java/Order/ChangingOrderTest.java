@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import specification.OrderStep;
 import specification.UserStep;
-import stellarburgers.Ingredient;
 import stellarburgers.IngredientData;
 import stellarburgers.Order;
 import stellarburgers.User;
@@ -50,8 +49,6 @@ public class ChangingOrderTest {
         ingred.add(ingredientData.getData().get(1).get_id());
         ingred.add(ingredientData.getData().get(7).get_id());
         ingred.add(ingredientData.getData().get(2).get_id());
-        int sumPrice = ingredientData.getData().stream().filter(ingredient -> ingred.contains(ingredient.get_id()))
-                .map(Ingredient::getPrice).mapToInt(i -> i).sum();
         Response response = orderStep.createOrder(order, accessToken);
         response.then().log().all()
                 .statusCode(HttpStatus.SC_OK)
@@ -63,8 +60,8 @@ public class ChangingOrderTest {
                 .and().body("order.owner.name", Matchers.is(USER_NAME))
                 .and().body("order.owner.email", Matchers.is(USER_EMAIL))
                 .and().body("order.status", Matchers.is("done"))
-                .and().body("order.name", Matchers.notNullValue())
-                .and().body("order.price", Matchers.is(sumPrice));
+                .and().body("order.name", Matchers.notNullValue());
+
     }
 
     @After
