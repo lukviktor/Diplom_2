@@ -29,4 +29,12 @@ public class OrderStep {
                 .when()
                 .post(ENDPOINT_ORDER);
     }
+    @Step("Получение заказов пользователя")
+    public Response getOrderUser(String accessToken){
+        return given().log().all()
+                .header("Content-Type", "application/json")
+                .header("authorization", accessToken)
+                .when()
+                .get(ENDPOINT_ORDER);
+    }
 }
