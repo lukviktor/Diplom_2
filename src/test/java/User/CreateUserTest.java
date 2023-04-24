@@ -29,14 +29,11 @@ public class CreateUserTest {
     @Test
     public void creatingUserTest() {
         userStep.createUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_OK)
-                .and()
-                .assertThat().body("success", Matchers.is(true))
-                .and()
-                .assertThat().body("accessToken", Matchers.notNullValue())
-                .and()
-                .assertThat().body("refreshToken", Matchers.notNullValue());
+                .and().assertThat().body("success", Matchers.is(true))
+                .and().body("accessToken", Matchers.notNullValue())
+                .and().body("refreshToken", Matchers.notNullValue());
     }
 
     @DisplayName("Создание пользователя")
@@ -45,11 +42,10 @@ public class CreateUserTest {
     public void createIdenticalUsersTest() {
         userStep.createUser(user);
         userStep.createUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_FORBIDDEN)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .assertThat().body("message", Matchers.is("User already exists"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("User already exists"));
     }
 
     @DisplayName("Создание пользователя")
@@ -58,11 +54,10 @@ public class CreateUserTest {
     public void createUsersIncorrectEmailTest() {
         user.setEmail("");
         userStep.createUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_FORBIDDEN)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .assertThat().body("message", Matchers.is("Email, password and name are required fields"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("Email, password and name are required fields"));
     }
 
     @DisplayName("Создание пользователя")
@@ -71,11 +66,10 @@ public class CreateUserTest {
     public void createUsersIncorrectNameTest() {
         user.setName("");
         userStep.createUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_FORBIDDEN)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .assertThat().body("message", Matchers.is("Email, password and name are required fields"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("Email, password and name are required fields"));
     }
 
     @DisplayName("Создание пользователя")
@@ -84,11 +78,10 @@ public class CreateUserTest {
     public void createUsersIncorrectPasswordTest() {
         user.setPassword("");
         userStep.createUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_FORBIDDEN)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .assertThat().body("message", Matchers.is("Email, password and name are required fields"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("Email, password and name are required fields"));
     }
 
     @After

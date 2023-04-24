@@ -34,14 +34,11 @@ public class UserLoginTest {
     @Test
     public void authorizationUserTest() {
         userStep.loginUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_OK)
-                .and()
-                .assertThat().body("success", Matchers.is(true))
-                .and()
-                .assertThat().body("accessToken", Matchers.notNullValue())
-                .and()
-                .assertThat().body("refreshToken", Matchers.notNullValue());
+                .and().assertThat().body("success", Matchers.is(true))
+                .and().body("accessToken", Matchers.notNullValue())
+                .and().body("refreshToken", Matchers.notNullValue());
     }
 
     @DisplayName("Логин пользователя")
@@ -50,12 +47,10 @@ public class UserLoginTest {
     public void authorizationUserIncorrectPasswordTest() {
         user.setPassword(randomPassword);
         userStep.loginUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .and()
-                .assertThat().body("message", Matchers.is("email or password are incorrect"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("email or password are incorrect"));
     }
 
     @DisplayName("Логин пользователя")
@@ -64,12 +59,10 @@ public class UserLoginTest {
     public void authorizationUserIncorrectPasswordNullTest() {
         user.setPassword("");
         userStep.loginUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .and()
-                .assertThat().body("message", Matchers.is("email or password are incorrect"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("email or password are incorrect"));
     }
 
     @DisplayName("Логин пользователя")
@@ -78,12 +71,10 @@ public class UserLoginTest {
     public void authorizationUserIncorrectEmailTest() {
         user.setEmail(randomEmail);
         userStep.loginUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .and()
-                .assertThat().body("message", Matchers.is("email or password are incorrect"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("email or password are incorrect"));
     }
 
     @DisplayName("Логин пользователя")
@@ -92,12 +83,10 @@ public class UserLoginTest {
     public void authorizationUserIncorrectEmailNullTest() {
         user.setEmail("");
         userStep.loginUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)
-                .and()
-                .assertThat().body("success", Matchers.is(false))
-                .and()
-                .assertThat().body("message", Matchers.is("email or password are incorrect"));
+                .and().assertThat().body("success", Matchers.is(false))
+                .and().body("message", Matchers.is("email or password are incorrect"));
     }
 
     @DisplayName("Логин пользователя")
@@ -106,7 +95,7 @@ public class UserLoginTest {
     public void authorizationUserIncorrectNameTest() {
         user.setName(randomName);
         userStep.loginUser(user)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_OK)
                 .and()
                 .assertThat().body("success", Matchers.is(true));

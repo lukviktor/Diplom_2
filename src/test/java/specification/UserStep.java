@@ -11,7 +11,7 @@ public class UserStep {
 
     @Step("Создание нового пользователя")
     public Response createUser(User user) {
-        return given()
+        return given().log().all()
                 .header("Content-type", "application/json")
                 .body(user)
                 .when()
@@ -24,7 +24,7 @@ public class UserStep {
 
     @Step("Авторизация пользователя")
     public Response loginUser(User user) {
-        return given()
+        return given().log().all()
                 .header("Content-type", "application/json")
                 .body(user)
                 .when()
@@ -33,14 +33,14 @@ public class UserStep {
 
     @Step("Удаление пользователя")
     public void deleteDataUser(String accessToken) {
-        given()
+        given().log().all()
                 .header("Authorization", accessToken)
                 .delete(ENDPOINT_DELETE_USER);
     }
 
 @Step("Изменение данных пользователя")
 public Response changingDataUser(User user, String accessToken) {
-    Response authorization = given()
+    Response authorization = given().log().all()
             .header("Content-type", "application/json")
             .header("Authorization", accessToken)
             .when()

@@ -38,12 +38,12 @@ public class ChangingUserDataTest {
         user.setName(updateName);
 
         userStep.changingDataUser(user, accessToken)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_OK)
                 .and()
                 .assertThat().body("success", Matchers.is(true))
-                .assertThat().body("user.email", Matchers.is(updateEmail))
-                .assertThat().body("user.name", Matchers.is(updateName));
+                .and().body("user.email", Matchers.is(updateEmail))
+                .and().body("user.name", Matchers.is(updateName));
     }
 
     @DisplayName("Изменение данных пользователя")
@@ -57,11 +57,11 @@ public class ChangingUserDataTest {
         user.setName(updateName);
 
         userStep.changingDataUser(user, accessToken)
-                .then()
+                .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)
                 .and()
                 .assertThat().body("success", Matchers.is(false))
-                .assertThat().body("message", Matchers.is("You should be authorised"));
+                .and().body("message", Matchers.is("You should be authorised"));
     }
     @After
     public void deleteUserTest() {
