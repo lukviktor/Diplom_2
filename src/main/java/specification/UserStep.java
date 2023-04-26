@@ -2,7 +2,6 @@ package specification;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
 import stellarburgers.User;
 
 import static constant.ConstantUrlApi.*;
@@ -41,13 +40,12 @@ public class UserStep {
 
 @Step("Изменение данных пользователя")
 public Response changingDataUser(User user, String accessToken) {
-    Response authorization = given().log().all()
+    return given().log().all()
             .header("Content-type", "application/json")
             .header("Authorization", accessToken)
             .when()
             .body(user)
             .patch(ENDPOINT_DELETE_USER);
-    return authorization;
 }
 
 

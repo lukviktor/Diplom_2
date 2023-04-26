@@ -1,7 +1,6 @@
 package randomdata;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.Test;
 
 import java.util.Random;
 
@@ -12,17 +11,15 @@ public class RandomEmailUser {
         int max = 15;
         int diff = max - min;
         Random random = new Random();
-        int numberSymbolsEmail = random.nextInt(diff + 1) + min;
-        return numberSymbolsEmail;
+        return random.nextInt(diff + 1) + min;
     }
 
     public String nameEmailUser() {
-        String emailUser = RandomStringUtils.randomAlphabetic(randomNumberSymbolsEmail());
-        return emailUser;
+        return RandomStringUtils.randomAlphabetic(randomNumberSymbolsEmail());
     }
 
     public String randomEmailUser() { // отправляем в email
-        String userNameEmail = new String(nameEmailUser());
+        String userNameEmail = nameEmailUser();
 
         // массив сервисов
         String[] services = new String[]{"hotmail.com", "live.com", "msn.com", "yahoo.com", "ymail.com",
@@ -35,13 +32,9 @@ public class RandomEmailUser {
                 "techemail.com", "ua.fm", "webmail.aol.com", "meta.ua"};
 
         int randomService = new Random().nextInt(services.length); // выбор случайного сервиса из массива
-        String readyEmail = String.format("%s@%s", userNameEmail, services[randomService]);
         // можно создать случайную комбинацию имя + @Сервис:
         // строки отформатированы, чтобы название компании и сервиса выводились через @
-        return readyEmail;
+        return String.format("%s@%s", userNameEmail, services[randomService]);
     }
-    @Test
-    public void sdf(){
-        System.out.println(randomEmailUser());
-    }
+
 }
