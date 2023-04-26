@@ -19,9 +19,9 @@ import static constant.ConstantUserData.*;
 public class UserLoginTest {
     UserStep userStep = new UserStep();
     User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
-    private String randomEmail = RandomStringUtils.randomAlphabetic(5) + "@yopmail.com";
-    private String randomPassword = RandomStringUtils.randomAlphabetic(15);
-    private String randomName = RandomStringUtils.randomAlphabetic(8);
+    private final String randomEmail = RandomStringUtils.randomAlphabetic(5) + "@yopmail.com";
+    private final String randomPassword = RandomStringUtils.randomAlphabetic(15);
+    private final String randomName = RandomStringUtils.randomAlphabetic(8);
 
     @Before
     public void setUp() {
@@ -58,7 +58,7 @@ public class UserLoginTest {
     @Description("логин с неверным логином и паролем (password null)")
     @Test
     public void authorizationUserIncorrectPasswordNullTest() {
-        user.setPassword("");
+        user.setPassword(randomPassword);
         userStep.loginUser(user)
                 .then().log().all()
                 .statusCode(HttpStatus.SC_UNAUTHORIZED)

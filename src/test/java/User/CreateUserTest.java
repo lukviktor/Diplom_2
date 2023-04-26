@@ -17,14 +17,14 @@ import stellarburgers.User;
 import static constant.ConstantUrlApi.BASE_URL;
 
 public class CreateUserTest {
-    RandomEmailUser emailUser = new RandomEmailUser();
-    UserStep userStep = new UserStep();
-    private String email = emailUser.randomEmailUser();
+    private final RandomEmailUser emailUser = new RandomEmailUser();
+    private final UserStep userStep = new UserStep();
+    private final String email = emailUser.randomEmailUser();
 
 
-    private String password = RandomStringUtils.randomAlphanumeric(10);
-    private String name = RandomStringUtils.randomAlphabetic(8);
-    User user = new User(email, password, name);
+    private final String password = RandomStringUtils.randomAlphanumeric(10);
+    private final String name = RandomStringUtils.randomAlphabetic(8);
+    private final User user = new User(email, password, name);
 
     @Test
     public void dsa() {

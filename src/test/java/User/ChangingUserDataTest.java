@@ -16,12 +16,12 @@ import static constant.ConstantUrlApi.BASE_URL;
 import static constant.ConstantUserData.*;
 
 public class ChangingUserDataTest {
-    UserStep userStep = new UserStep();
+    private final UserStep userStep = new UserStep();
     private String accessToken;
-    User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
+    private final User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
 
-    private String updateEmail = "vik" + USER_EMAIL;
-    private String updateName = USER_NAME + "vik";
+    private final String updateEmail = "vik" + USER_EMAIL;
+    private final String updateName = USER_NAME + "vik";
 
     @Before
     public void setUp() {

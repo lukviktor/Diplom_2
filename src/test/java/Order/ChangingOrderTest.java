@@ -23,12 +23,12 @@ import static constant.ConstantUserData.*;
 
 public class ChangingOrderTest {
 
-    private UserStep userStep = new UserStep();
-    private OrderStep orderStep = new OrderStep();
-    private User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
+    private final UserStep userStep = new UserStep();
+    private final OrderStep orderStep = new OrderStep();
+    private final User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
     private String accessToken;
-    private List<String> ingred = new ArrayList<>();
-    private Order order = new Order(ingred);
+    private final List<String> ingred = new ArrayList<>();
+    private final Order order = new Order(ingred);
 
     @Before
     public void setUp() {
