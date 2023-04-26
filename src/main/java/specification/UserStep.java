@@ -2,6 +2,7 @@ package specification;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import stellarburgers.User;
 
 import static constant.ConstantUrlApi.*;

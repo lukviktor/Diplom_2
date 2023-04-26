@@ -4,20 +4,35 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import randomdata.RandomEmailUser;
 import specification.UserStep;
 import stellarburgers.User;
 
 import static constant.ConstantUrlApi.BASE_URL;
-import static constant.ConstantUserData.*;
 
 public class CreateUserTest {
+    RandomEmailUser emailUser = new RandomEmailUser();
     UserStep userStep = new UserStep();
-    User user = new User(USER_EMAIL, USER_PASSWORD, USER_NAME);
+    private String email = emailUser.randomEmailUser();
+
+
+    private String password = RandomStringUtils.randomAlphanumeric(10);
+    private String name = RandomStringUtils.randomAlphabetic(8);
+    User user = new User(email, password, name);
+
+    @Test
+    public void dsa() {
+        System.out.println(email);
+        System.out.println(password);
+        System.out.println(name);
+
+    }
 
     @Before
     public void setUp() {
