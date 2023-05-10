@@ -1,14 +1,15 @@
-# Diplom_2
-## Задание 2: API
-Протестировать API [Stellar Burgers](https://stellarburgers.nomoreparties.site/),
+# QA_java_tests_API
+## API
+Протестировать API [Stellar Burgers](https://stellarburgers.nomoreparties.site/)
+
 [Документация API](https://code.s3.yandex.net/qa-automation-engineer/java/cheatsheets/paid-track/diplom/api-documentation.pdf).
 ## Описание
     Java 11
-    maven 4.0.0
-    JUnit 4.13.2
-    RestAssured 5.3.0
-    Allure 2.21.0
-    gson 2.10.1
+    maven
+    JUnit
+    RestAssured
+    Allure
+    gson
 ### Для запуска автотестов необходимо:
 Для запуска автотеста в console прописать команду:
 ```sh
